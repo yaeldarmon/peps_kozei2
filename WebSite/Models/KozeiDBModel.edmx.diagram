@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c4fe6ebba7d94b849c6e7c29ea7390a6" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="KozeiDBModel.Financial_Product" Width="1.5" PointX="8.875" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="KozeiDBModel.Modele" Width="1.5" PointX="9.625" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KozeiDBModel.Portfolio" Width="1.5" PointX="8" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="KozeiDBModel.Portfolio_Part" Width="1.5" PointX="6.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KozeiDBModel.Share" Width="1.5" PointX="3.625" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KozeiDBModel.Value" Width="1.5" PointX="12.125" PointY="2.125" IsExpanded="true" />
+        <AssociationConnector Association="KozeiDBModel.FK_Portfolio_Part_ToFinancial_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="KozeiDBModel.FK_Share_ToFinancial_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="KozeiDBModel.FK_Value_ToFinancial_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="KozeiDBModel.FK_Portfolio_ToModele" ManuallyRouted="false" />
+        <AssociationConnector Association="KozeiDBModel.FK_Value_ToModele" ManuallyRouted="false" />
+        <AssociationConnector Association="KozeiDBModel.FK_Portfolio_Part_ToPortfolio" ManuallyRouted="false" />
+        <AssociationConnector Association="KozeiDBModel.FK_Value_ToPortfolio" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

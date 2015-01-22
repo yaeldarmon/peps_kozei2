@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+    <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta charset="utf-8" />
+        <title>Kozei 2</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+    <body>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/chart")
+        @Scripts.Render("~/bundles/index")
+
+        <div id="canevas">
+            <header>
+                <h1>Kosei 2</h1>
+            </header>
+
+            <div id="section">
+                @RenderBody()
+            </div>
+
+            <footer>
+                <div>&copy; @DateTime.Now.Year - ENSIMAG - Groupe 3</div>
+            </footer>
+        </div>
+    </body>
+</html>

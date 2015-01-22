@@ -1,0 +1,461 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="KozeiDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Financial_Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Modele">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="interest_rate" Type="float" />
+        </EntityType>
+        <EntityType Name="Portfolio">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="modele_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Portfolio_Part">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="portfolio_id" Type="int" />
+          <Property Name="financial_product_id" Type="int" />
+          <Property Name="part" Type="float" />
+          <Property Name="date" Type="float" />
+        </EntityType>
+        <EntityType Name="Share">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="country" Type="varchar" MaxLength="50" />
+          <Property Name="company" Type="varchar" MaxLength="50" />
+          <Property Name="isin_code" Type="varchar" MaxLength="50" />
+          <Property Name="ticker" Type="varchar" MaxLength="50" />
+          <Property Name="path" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Value">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="value" Type="float" />
+          <Property Name="date" Type="float" />
+          <Property Name="financial_product_id" Type="int" />
+          <Property Name="price_portfolio_id" Type="int" />
+          <Property Name="error_modele_id" Type="int" />
+          <Property Name="ic" Type="float" />
+        </EntityType>
+        <Association Name="FK_Portfolio_Part_ToFinancial_Product">
+          <End Role="Financial_Product" Type="Self.Financial_Product" Multiplicity="0..1" />
+          <End Role="Portfolio_Part" Type="Self.Portfolio_Part" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Financial_Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Portfolio_Part">
+              <PropertyRef Name="financial_product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Portfolio_Part_ToPortfolio">
+          <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="0..1" />
+          <End Role="Portfolio_Part" Type="Self.Portfolio_Part" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Portfolio">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Portfolio_Part">
+              <PropertyRef Name="portfolio_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Portfolio_ToModele">
+          <End Role="Modele" Type="Self.Modele" Multiplicity="0..1" />
+          <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modele">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Portfolio">
+              <PropertyRef Name="modele_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Share_ToFinancial_Product">
+          <End Role="Financial_Product" Type="Self.Financial_Product" Multiplicity="1" />
+          <End Role="Share" Type="Self.Share" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Financial_Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Share">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Value_ToFinancial_Product">
+          <End Role="Financial_Product" Type="Self.Financial_Product" Multiplicity="0..1" />
+          <End Role="Value" Type="Self.Value" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Financial_Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Value">
+              <PropertyRef Name="financial_product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Value_ToModele">
+          <End Role="Modele" Type="Self.Modele" Multiplicity="0..1" />
+          <End Role="Value" Type="Self.Value" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modele">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Value">
+              <PropertyRef Name="error_modele_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Value_ToPortfolio">
+          <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="0..1" />
+          <End Role="Value" Type="Self.Value" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Portfolio">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Value">
+              <PropertyRef Name="price_portfolio_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KozeiDBModelStoreContainer">
+          <EntitySet Name="Financial_Product" EntityType="Self.Financial_Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Modele" EntityType="Self.Modele" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Portfolio" EntityType="Self.Portfolio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Portfolio_Part" EntityType="Self.Portfolio_Part" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Share" EntityType="Self.Share" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Value" EntityType="Self.Value" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Portfolio_Part_ToFinancial_Product" Association="Self.FK_Portfolio_Part_ToFinancial_Product">
+            <End Role="Financial_Product" EntitySet="Financial_Product" />
+            <End Role="Portfolio_Part" EntitySet="Portfolio_Part" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Portfolio_Part_ToPortfolio" Association="Self.FK_Portfolio_Part_ToPortfolio">
+            <End Role="Portfolio" EntitySet="Portfolio" />
+            <End Role="Portfolio_Part" EntitySet="Portfolio_Part" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Portfolio_ToModele" Association="Self.FK_Portfolio_ToModele">
+            <End Role="Modele" EntitySet="Modele" />
+            <End Role="Portfolio" EntitySet="Portfolio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Share_ToFinancial_Product" Association="Self.FK_Share_ToFinancial_Product">
+            <End Role="Financial_Product" EntitySet="Financial_Product" />
+            <End Role="Share" EntitySet="Share" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Value_ToFinancial_Product" Association="Self.FK_Value_ToFinancial_Product">
+            <End Role="Financial_Product" EntitySet="Financial_Product" />
+            <End Role="Value" EntitySet="Value" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Value_ToModele" Association="Self.FK_Value_ToModele">
+            <End Role="Modele" EntitySet="Modele" />
+            <End Role="Value" EntitySet="Value" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Value_ToPortfolio" Association="Self.FK_Value_ToPortfolio">
+            <End Role="Portfolio" EntitySet="Portfolio" />
+            <End Role="Value" EntitySet="Value" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KozeiDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Financial_Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Portfolio_Part" Relationship="Self.FK_Portfolio_Part_ToFinancial_Product" FromRole="Financial_Product" ToRole="Portfolio_Part" />
+          <NavigationProperty Name="Share" Relationship="Self.FK_Share_ToFinancial_Product" FromRole="Financial_Product" ToRole="Share" />
+          <NavigationProperty Name="Value" Relationship="Self.FK_Value_ToFinancial_Product" FromRole="Financial_Product" ToRole="Value" />
+        </EntityType>
+        <EntityType Name="Modele">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="interest_rate" Type="Double" />
+          <NavigationProperty Name="Portfolio" Relationship="Self.FK_Portfolio_ToModele" FromRole="Modele" ToRole="Portfolio" />
+          <NavigationProperty Name="Value" Relationship="Self.FK_Value_ToModele" FromRole="Modele" ToRole="Value" />
+        </EntityType>
+        <EntityType Name="Portfolio">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="modele_id" Type="Int32" />
+          <NavigationProperty Name="Modele" Relationship="Self.FK_Portfolio_ToModele" FromRole="Portfolio" ToRole="Modele" />
+          <NavigationProperty Name="Portfolio_Part" Relationship="Self.FK_Portfolio_Part_ToPortfolio" FromRole="Portfolio" ToRole="Portfolio_Part" />
+          <NavigationProperty Name="Value" Relationship="Self.FK_Value_ToPortfolio" FromRole="Portfolio" ToRole="Value" />
+        </EntityType>
+        <EntityType Name="Portfolio_Part">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="portfolio_id" Type="Int32" />
+          <Property Name="financial_product_id" Type="Int32" />
+          <Property Name="part" Type="Double" />
+          <Property Name="date" Type="Double" />
+          <NavigationProperty Name="Financial_Product" Relationship="Self.FK_Portfolio_Part_ToFinancial_Product" FromRole="Portfolio_Part" ToRole="Financial_Product" />
+          <NavigationProperty Name="Portfolio" Relationship="Self.FK_Portfolio_Part_ToPortfolio" FromRole="Portfolio_Part" ToRole="Portfolio" />
+        </EntityType>
+        <EntityType Name="Share">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="company" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isin_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ticker" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="path" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Financial_Product" Relationship="Self.FK_Share_ToFinancial_Product" FromRole="Share" ToRole="Financial_Product" />
+        </EntityType>
+        <EntityType Name="Value">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="value1" Type="Double" />
+          <Property Name="date" Type="Double" />
+          <Property Name="financial_product_id" Type="Int32" />
+          <Property Name="price_portfolio_id" Type="Int32" />
+          <Property Name="error_modele_id" Type="Int32" />
+          <Property Name="ic" Type="Double" />
+          <NavigationProperty Name="Financial_Product" Relationship="Self.FK_Value_ToFinancial_Product" FromRole="Value" ToRole="Financial_Product" />
+          <NavigationProperty Name="Modele" Relationship="Self.FK_Value_ToModele" FromRole="Value" ToRole="Modele" />
+          <NavigationProperty Name="Portfolio" Relationship="Self.FK_Value_ToPortfolio" FromRole="Value" ToRole="Portfolio" />
+        </EntityType>
+        <Association Name="FK_Portfolio_Part_ToFinancial_Product">
+          <End Role="Financial_Product" Type="Self.Financial_Product" Multiplicity="0..1" />
+          <End Role="Portfolio_Part" Type="Self.Portfolio_Part" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Financial_Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Portfolio_Part">
+              <PropertyRef Name="financial_product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Share_ToFinancial_Product">
+          <End Role="Financial_Product" Type="Self.Financial_Product" Multiplicity="1" />
+          <End Role="Share" Type="Self.Share" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Financial_Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Share">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Value_ToFinancial_Product">
+          <End Role="Financial_Product" Type="Self.Financial_Product" Multiplicity="0..1" />
+          <End Role="Value" Type="Self.Value" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Financial_Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Value">
+              <PropertyRef Name="financial_product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Portfolio_ToModele">
+          <End Role="Modele" Type="Self.Modele" Multiplicity="0..1" />
+          <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modele">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Portfolio">
+              <PropertyRef Name="modele_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Value_ToModele">
+          <End Role="Modele" Type="Self.Modele" Multiplicity="0..1" />
+          <End Role="Value" Type="Self.Value" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modele">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Value">
+              <PropertyRef Name="error_modele_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Portfolio_Part_ToPortfolio">
+          <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="0..1" />
+          <End Role="Portfolio_Part" Type="Self.Portfolio_Part" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Portfolio">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Portfolio_Part">
+              <PropertyRef Name="portfolio_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Value_ToPortfolio">
+          <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="0..1" />
+          <End Role="Value" Type="Self.Value" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Portfolio">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Value">
+              <PropertyRef Name="price_portfolio_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KozeiDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Financial_Product" EntityType="Self.Financial_Product" />
+          <EntitySet Name="Modele" EntityType="Self.Modele" />
+          <EntitySet Name="Portfolio" EntityType="Self.Portfolio" />
+          <EntitySet Name="Portfolio_Part" EntityType="Self.Portfolio_Part" />
+          <EntitySet Name="Share" EntityType="Self.Share" />
+          <EntitySet Name="Value" EntityType="Self.Value" />
+          <AssociationSet Name="FK_Portfolio_Part_ToFinancial_Product" Association="Self.FK_Portfolio_Part_ToFinancial_Product">
+            <End Role="Financial_Product" EntitySet="Financial_Product" />
+            <End Role="Portfolio_Part" EntitySet="Portfolio_Part" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Share_ToFinancial_Product" Association="Self.FK_Share_ToFinancial_Product">
+            <End Role="Financial_Product" EntitySet="Financial_Product" />
+            <End Role="Share" EntitySet="Share" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Value_ToFinancial_Product" Association="Self.FK_Value_ToFinancial_Product">
+            <End Role="Financial_Product" EntitySet="Financial_Product" />
+            <End Role="Value" EntitySet="Value" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Portfolio_ToModele" Association="Self.FK_Portfolio_ToModele">
+            <End Role="Modele" EntitySet="Modele" />
+            <End Role="Portfolio" EntitySet="Portfolio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Value_ToModele" Association="Self.FK_Value_ToModele">
+            <End Role="Modele" EntitySet="Modele" />
+            <End Role="Value" EntitySet="Value" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Portfolio_Part_ToPortfolio" Association="Self.FK_Portfolio_Part_ToPortfolio">
+            <End Role="Portfolio" EntitySet="Portfolio" />
+            <End Role="Portfolio_Part" EntitySet="Portfolio_Part" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Value_ToPortfolio" Association="Self.FK_Value_ToPortfolio">
+            <End Role="Portfolio" EntitySet="Portfolio" />
+            <End Role="Value" EntitySet="Value" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KozeiDBModelStoreContainer" CdmEntityContainer="KozeiDBEntities">
+          <EntitySetMapping Name="Financial_Product">
+            <EntityTypeMapping TypeName="KozeiDBModel.Financial_Product">
+              <MappingFragment StoreEntitySet="Financial_Product">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Modele">
+            <EntityTypeMapping TypeName="KozeiDBModel.Modele">
+              <MappingFragment StoreEntitySet="Modele">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="interest_rate" ColumnName="interest_rate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Portfolio">
+            <EntityTypeMapping TypeName="KozeiDBModel.Portfolio">
+              <MappingFragment StoreEntitySet="Portfolio">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="modele_id" ColumnName="modele_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Portfolio_Part">
+            <EntityTypeMapping TypeName="KozeiDBModel.Portfolio_Part">
+              <MappingFragment StoreEntitySet="Portfolio_Part">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="portfolio_id" ColumnName="portfolio_id" />
+                <ScalarProperty Name="financial_product_id" ColumnName="financial_product_id" />
+                <ScalarProperty Name="part" ColumnName="part" />
+                <ScalarProperty Name="date" ColumnName="date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Share">
+            <EntityTypeMapping TypeName="KozeiDBModel.Share">
+              <MappingFragment StoreEntitySet="Share">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="company" ColumnName="company" />
+                <ScalarProperty Name="isin_code" ColumnName="isin_code" />
+                <ScalarProperty Name="ticker" ColumnName="ticker" />
+                <ScalarProperty Name="path" ColumnName="path" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Value">
+            <EntityTypeMapping TypeName="KozeiDBModel.Value">
+              <MappingFragment StoreEntitySet="Value">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="value1" ColumnName="value" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="financial_product_id" ColumnName="financial_product_id" />
+                <ScalarProperty Name="price_portfolio_id" ColumnName="price_portfolio_id" />
+                <ScalarProperty Name="error_modele_id" ColumnName="error_modele_id" />
+                <ScalarProperty Name="ic" ColumnName="ic" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
