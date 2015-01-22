@@ -1,0 +1,164 @@
+﻿html, body {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #efefef;
+}
+body {
+    font-size: .85em;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    color: #232323;
+}
+
+header, footer, nav, section {
+    display: block;
+}
+
+
+/* Canevas
+-----------------------------------------------------------*/
+#canevas {
+    position: relative;
+    min-height: 100%;
+    margin: 0 auto;
+}
+
+/* Header
+-----------------------------------------------------------*/
+header {
+    height: 80px;
+    background-color: #2d2d2d;
+}
+header h1 {
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+    color: #ffffff;
+    font-weight: 600;
+    text-shadow: 5px 5px 5px rgba(255, 255, 255, 0.75);
+}
+
+/* Section
+-----------------------------------------------------------*/
+#section {
+    width: 100%;
+    padding-bottom: 50px;
+}
+
+#section .container {
+    width: 800px;
+    margin: 0 auto;
+    margin-top: 40px;
+}
+
+.container button {
+    display: block;
+    height: 30px;
+    line-height: 22px;
+    margin: 0 auto;
+    padding: 4px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: #2d2d2d;
+    color: #ffffff;
+    text-align: center;
+    cursor: pointer;
+}
+.container button:hover {
+    background-color: #aad7ad;
+    color: #000000;
+}
+
+.container .res {
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+.container .res .tr0 {
+    background-color: #647966;
+}
+.container .res .tr1 {
+    /*background-color: #fbae7b;*/
+    background-color: #aad7ad;
+}
+.container .res .tr2 {
+    /*background-color: #fbddc8;*/
+    background-color: #c3fbc6;
+}
+.container .res td,
+.container .res th {
+    padding: 5px;
+}
+.container .res .col1,
+.container .res th {
+    font-weight: 600;
+}
+
+/* Footer
+-----------------------------------------------------------*/
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    background-color: #2d2d2d;
+}
+footer div {
+    color: #ffffff;
+    text-align: center;
+}
+
+
+
+/* Styles for basic forms
+-----------------------------------------------------------*/
+fieldset {
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+}
+
+legend {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+textarea {
+    min-height: 75px;
+}
+
+.editor-label {
+    margin: 1em 0 0 0;
+}
+
+.editor-field {
+    margin: 0.5em 0 0 0;
+}
+
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error {
+    color: #f00;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #f00;
+}
+
+.validation-summary-valid {
+    display: none;
+}

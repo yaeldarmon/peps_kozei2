@@ -1,0 +1,31 @@
+country:tompany:isin:ticker:path
+États-Unis:DANAHER:US2358511028:DHR:Industrial Goods/Diversified Machinery
+États-Unis:AGILENT TECHNOLOGIES:US00846U1016:A:Healthcare/MedicalLaboratories& Research
+États-Unis:ECOLAB:US2788651006:ECL:Consumer Goods/Cleaning Products
+Suisse:PENTAIR:CH0193880173:PNR:Industrial Goods/Industrial Equipment&Components
+États-Unis:FLOWSERVE:US34354P1057:FLS:Industrial Goods/Diversified Machinery
+États-Unis:ROPER INDUSTRIES:US7766961061:ROP:Industrial Goods/Diversified Machinery
+États-Unis:XYLEM:US98419M1009:XYL:Industrial Goods/Diversified Machinery
+France:VEOLIA ENVIRONNEMENT:FR0000124141:VIE:Industrial Goods/Waste Management
+Royaume-Uni:UNITED UTILITIES GROUP:GB00B39J2M42:UU:null
+États-Unis:THERMO FISHER:US8835561023:TMO:Healthcare/Medical Laboratories & Research
+Japon:TOYOTA MOTOR:JP3633400001:TOM:Consumer Goods/Auto Manufacturers
+Allemagne:SIEMENS:DE0007236101:SIE:Industrial Goods/Diversified Machinery
+États-Unis:EMERSON ELECTRIC:US2910111044:EMR:Technology/Diversified Electronics
+Ireland:EATON:IE00B8KQN827:ETN:Technology/Diversified Electronics
+États-Unis:CUMMINS:US2310211063:CMI:Industrial Goods/Diversified Machinery
+États-Unis:CSX:US1264081035:CSX:Services/Railroads
+France:SCHNEIDER ELECTRIC:FR0000121972:SND:null	
+Allemagne:LINDE:DE0006483001:LIN:null
+Japon:EAST:JAPAN:RAILWAY:JP3783600004:EJR:null 	
+États-Unis:BORGWARNER:US0997241064:BWA:Consumer Goods/Auto Parts
+Pays-Bas:KONINKLIJKE:NL0000009827:DSM:null
+États-Unis:DOW CHEMICAL:US2605431038:DOW:null 
+États-Unis:MONDELEZ:US6092071058:MDLZ:Consumer Goods/Confectioner
+États-Unis:DEERE CO:US2441991054:DCO:Industrial Goods/Farm  Construction Machinery
+États-Unis:AGCO:US0010841023:AGCO:Industrial Goods/Farm  Construction Machinery
+Canada:CANADIAN NATIONAL RAILWAY:CA1363751027:CNI:Services/Railroads
+États-Unis:KELLOGG:US4878361082:K:Consumer Goods/Processed Packaged Goods
+États-Unis:MOSAIC:US61945C1036:MOS:null 
+États-Unis:CF INDUSTRIES:US1252691001:CF:null
+Brésil:BRF SA:US10552T1079:BFRS:Consumer Goods/Meat Products
